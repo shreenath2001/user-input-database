@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'bootstrap.min.css') }}">
+
+	<style type="text/css">
+
+		* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+		
+		body {
+		background-image: url('static/background-1.jpg');
+		background-repeat: no-repeat;
+  		background-position: center;
+  		background-attachment: fixed;
+  		background-size: cover;
+  		height: 100%;
+  		z-index: -1;
+	}
+
+	.container {
+		margin-top: 20vh;
+		width: 600px;
+	}
+
+	.submit {
+		font-size: 2em;
+		border:5px solid black;
+		padding: 10px;
+	}
+
+	p {
+		font-size: 1.2em;
+	}
+
+	.button1 {
+		width: 100px;
+		padding: 10px
+		border:1px solid cyan;
+	}
+
+
+	.button1:hover {
+		color: black;
+		background-color: white;
+		box-shadow: 0 0 20px 0 rgba(0,0,0,0.3);
+	}
+
+	.button2 {
+		width: 150px;
+		padding: 10px
+		border:1px solid cyan;
+	}
+
+
+	.button2:hover {
+		color: black;
+		background-color: white;
+		box-shadow: 0 0 20px 0 rgba(0,0,0,0.3);
+	}
+
+	@media only screen and (max-width: 600px) {
+	  .container {
+	  	width: 85%
+	  }
+
+	  p {
+	  	font-size: 0.8em;
+	  }
+	}
+
+	</style>
+
+	<title>Database</title>
+</head>
+<body>
+
+	<div class="container">
+		{% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                  {{ message }}
+                </div>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+		<form action="{{url_for('submit')}}" method="post" class="submit">
+			<br>
+			<h1 align="center">DATABASE INPUT</h1>
+			<br>
+			<div class="form-group row">
+				<label class="col-4"><p>Name:</p></label>
+                <div class="col-8">
+                    <input type="text" name="name" class="form-control" id="name" required>
+                </div>
+			</div>
+			<div class="form-group row">
+				<label class="col-4"><p>Roll-No:</p></label>
+                <div class="col-8">
+                    <input type="text" name="roll" class="form-control" id="roll" required>
+                </div>
+			</div>
+			<div class="form-group row d-flex justify-content-center button">
+                <div>
+                    <button type="submit" class="btn btn-primary button1"><strong>Submit</strong></button>
+                </div>
+            </div>
+		</form>
+		<br>
+		<form action="{{url_for('view_database')}}" method="post">
+			<div>
+	            <button type="submit" class="btn btn-primary button2"><strong>View Database</strong></button>
+	        </div>
+	    </form>
+	</div>
+
+	<script type="text/javascript" src="{{ url_for('static', filename = 'jquery.3.4.1.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename = 'bootstrap.min.js') }}"></script>
+
+</body>
+</html>
